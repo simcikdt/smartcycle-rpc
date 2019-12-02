@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.amazon.aws.smartcycle.vuzixlens.message";
+option java_outer_classname = "SmartcycleProto";
+option objc_class_prefix = "HLW";
+
+package smartcycle;
+
+// The  message service definition for smartcycle.
+service SmartcycleService {
+
+  rpc GetSensorData(SensorRequest) returns (SensorData) {}
+  rpc SwitchHeadlight(HeadlightRequest) returns (HeadlightData) {}
+}
+
+message SensorRequest {
+  //NONE
+}
+
+message SensorData {
+  int32 speed = 1;
+  int32 heartrate = 2;
+  int32 cadence = 3;
+  int32 temperature = 4;
+}
+
+message HeadlightRequest {
+  bool on=1;
+}
+
+message HeadlightData {
+  bool on=1;
+}
+
+
+/*
+cd grpc-java/examples
+./gradlew installDist
+./build/install/examples/bin/hello-world-server
+src/main/java/io/grpc/examples/helloworld/HelloWorldClient.java
+src/main/java/io/grpc/examples/helloworld/HelloWorldServer.java
+./src/main/proto/smartcycleMessage.proto
+*/
